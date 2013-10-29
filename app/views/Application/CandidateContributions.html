@@ -1,0 +1,64 @@
+  <script type="text/javascript" src="/public/datatables/js/fileload_anim.js"></script>
+<div style="position: relative;">
+  <div class="row" style="position: absolute; top: -45px; right: 0px;">
+    #{form @Application.byDonors(),  method:'POST' }
+   
+    <input type="hidden" name="donor" value="${donor}" />
+    <input type="hidden" name="recipient" value="${recipient}" />
+    <input type="hidden" name="location-from" value="${location_from}" />
+    <input type="hidden" name="location-to" value="${location_to}" />
+    <input type="hidden" name="date-start" value="${date_start}" />
+    <input type="hidden" name="date-end" value="${date_end}" />
+    <input type="hidden" name="sessions" value="${sessions}"/>
+    <input type="hidden" name="download" value="true">
+    <input type="submit" name="dbutton" value="Download CSV File" class="btn">
+    <div id="#wait" type="hidden" />
+    #{/form}
+  </div>
+
+</div>
+
+
+<div class="cc-total">Total donations: ${total.formatCurrency('USD')}</strong></div>
+<table id="data-table" class="cctable table table-bordered table-striped" style="max-width: initial; font-size: small;">
+<thead>
+      <th>Election Cycle</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Donor Name</th>
+      <th>Donor City</th>
+      <th>Donor State</th>
+      <th>Donor Occupation</th>
+      <th>Donor Organization</th>
+      <th>Donor Entity Type</th>
+      <th>Recipient Name</th>
+      <th>Party</th>
+      <th>Office</th>
+      <th>State</th>
+      <th>District</th>
+      <th>Status</th>
+      <th>ID</th>
+      <th>Up Date</th>
+</thead>
+#{list items:cc, as:'contr'}
+<tr>
+      <td>${contr.ElectionCycle}</td>
+    <td>${contr.TransactionDate}</td>
+      <td>${contr.TransactionAmount}</td>
+      <td>${contr.DonorNameNormalized}</td>
+      <td>${contr.DonorCity}</td>
+      <td>${contr.DonorState}</td>
+      <td>${contr.DonorOccupation}</td>
+      <td>${contr.DonorOrganization}</td>
+      <td>${contr.DonorEntityType}</td>
+      <td>${contr.RecipientCandidateNameNormalized}</td>
+      <td>${contr.RecipientCandidateParty}</td>
+      <td>${contr.RecipientCandidateOffice}</td>
+      <td>${contr.RecipientCandidateOfficeState}</td>
+      <td>${contr.RecipientCandidateDistrict}</td>
+      <td>${contr.RecipientCandidateStatus}</td>
+      <td>${contr.TransactionID}</td>
+      <td>${contr.UpdateTimestamp}</td>
+</tr>
+#{/list}
+</table>

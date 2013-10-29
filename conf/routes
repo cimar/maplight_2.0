@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+
+GET		/California								CaliforniaController.index
+GET		/Committees								CommitteeController.index
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+GET    /list-by-recipient-donar                 Application.listByRecipientDonorYear
+GET    /download-data                           Application.downloadData
+GET    /api/donor                               Application.byDonors
+POST   /api/donor                               Application.byDonors
+GET    /api/autocomplete/candidates             AutoComplete.candidates
+GET    /api/sessionDropDown                     VWCandidate.sessionDropDown
+GET	   /api/electionDropDown					CommitteeController.electionDropDown
+GET    /api/propositionsByDate					CommitteeController.propositionDropDown
+
+
+GET	   /api/cautocomplete/candidates			CAutoComplete.candidates
+GET	   /capi/office								CaliforniaController.officeNames
+GET    /capi/donor								CaliforniaController.byDonors
+POST   /capi/donor								CaliforniaController.byDonors
+
+GET		/comapi/donor							CommitteeController.byDonors
+POST	/comapi/donor							CommitteeController.byDonors
+GET		/api/comautocomplete/committees			ComAutoComplete.committees
+
+# Catch all
+#*       /{controller}/{action}                  {controller}.{action}

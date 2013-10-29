@@ -1,0 +1,78 @@
+
+<div style="position: relative;">
+  <div><p><i>This page will not display more than 1,000<br/>entries.  To view the entire set please download <br/>the CSV file. or <a href=${url} target="_blank">link to the raw results</a>.</i></p></div>
+  <div class="row" style="position: absolute; top: -45px; right: 0px;">
+    #{form @CommitteeController.byDonors(),  method:'POST' }
+    <input type="hidden" name="donor" value="${donor}" />
+    <input type="hidden" name="election" value='${params.get("election")}' />
+    <input type="hidden" name="proposition" value='${params.get("proposition")}' />
+    <input type="hidden" name="position" value='${params.get("position")}' />
+    <input type="hidden" name="location-from" value="${location_from}" />
+    <input type="hidden" name="location-to" value="${location_to}" />
+    <input type="hidden" name="date-start" value="${date_start}" />
+    <input type="hidden" name="date-end" value="${date_end}" />
+    <input type="hidden" name="sessions" value="${sessions}"/>
+    <input type="hidden" name="download" value="true">
+    <input type="submit" name="dbutton" value="Download CSV File" class="btn">
+    #{/form}
+  </div>
+</div>
+<br/>
+Total donations: ${total.formatCurrency('USD')} 
+
+<table id="data-table" class="cctable table table-bordered table-striped" style="max-width: initial; font-size: small;">
+<thead>
+
+		<th>Target</th>
+		<th>Position</th>
+		<th>Recipient Committee</th>
+		<th>Date</th>
+		<th>Amount</th>
+		<th>Donor Name</th>
+		<th>Donor Employer</th>
+		<th>Donor Occupation</th>
+		<th>Donor Organization</th>
+		<th>Donor City</th>
+		<th>Donor State</th>
+		<th>Donor Zip</th>
+		<th>Donor Entity Type</th>
+		<th>Transaction Type</th>
+		<th>Transaction ID</th>		
+		<th>Election Cycle</th>
+		<th>Election Date</th>		
+				
+		<!--<th>PrimaryGeneralIndicator</th>
+		<th>DonorIndustry</th>
+		<th>DonorCommitteeNameNormalized</th>
+		<th>DonorCommitteeType</th>
+		<th>DonorCommitteeParty</th>
+		<th>DonorCommitteeID</th> 
+		<th>id</th>-->
+</thead>
+#{list items:cc, as:'contr'}
+<tr>
+
+		<td>${contr.Target}</td>
+		<td>${contr.Position}</td>
+		<td>${contr.RecipientCommitteeNameNormalized}</td>
+		<td>${contr.TransactionDate}</td>
+		<td>${contr.TransactionAmount}</td>
+		<td>${contr.DonorNameNormalized}</td>
+		<td>${contr.DonorEmployerNormalized}</td>
+		<td>${contr.DonorOccupationNormalized}</td>
+		<td>${contr.DonorOrganization}</td>
+		<td>${contr.DonorCity}</td>
+		<td>${contr.DonorState}</td>
+		<td>${contr.DonorZipCode}</td>
+		<td>${contr.DonorEntityType}</td>
+		<td>${contr.TransactionType}</td>
+		<td>${contr.TransactionID}</td>
+		<td>${contr.ElectionCycle}</td>
+		<td>${contr.Election}</td>
+		
+
+		
+
+</tr>
+#{/list}
+</table>

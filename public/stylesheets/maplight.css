@@ -1,0 +1,31 @@
+body {
+	width: 100%;
+}
+
+div.masthead {
+	height: 50px;
+	background: url('/public/images/logo.png') no-repeat;
+	background-position: 10px;
+	padding-top: 10px;
+	margin-bottom: 20px;
+	background-color: rgba(156, 199, 156, 0.34);	
+    border-bottom: 1px solid lightgray;
+}
+
+div.beta {
+	width: 50%;
+	margin: 25px;
+	padding: 15px;
+	background-color: #FFEEEE;
+	color: #F80809;
+	border: 2px solid #F80809;
+	border-radius: 5px;
+}
+		
+div.cc-total {
+       display: none;
+}
+
+.custom-tooltip-styling {
+	font-size: 4px;
+}

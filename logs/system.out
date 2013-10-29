@@ -1,0 +1,439 @@
+CompilerOracle: exclude jregex/Pretokenizer.next
+Listening for transport dt_socket at address: 8000
+10:13:46,349 INFO  ~ Starting C:\Users\rcima\Desktop\maplight_1.0
+10:13:48,578 WARN  ~ You're running Play! in DEV mode
+10:13:49,547 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10:14:25,923 INFO  ~ Connected to jdbc:mysql://192.168.222.103/maplight_data?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&ch‌​aracterSetResults=UTF-8?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci
+10:14:29,770 ERROR ~ Unsuccessful: alter table vw_candidates add index FK70B84F8ED3BF2E60 (recipient_fec_id), add constraint FK70B84F8ED3BF2E60 foreign key (recipient_fec_id) references pwr_contrib_cand_committees (RecipientCandidateFECID)
+10:14:29,770 ERROR ~ ALTER command denied to user 'map_research'@'192.168.222.64' for table 'vw_candidates'
+10:14:29,934 INFO  ~ Application 'maplight' is now started !
+I'm in here!!
+10:15:37,814 DEBUG ~ 
+    /* SELECT
+        DISTINCT RecipientCandidateOffice 
+    FROM
+        CaliforniaCandidates 
+    where
+        RecipientCandidateOffice is not null */ select
+            distinct california0_.RecipientCandidateOffice as col_0_0_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.RecipientCandidateOffice is not null
+10:15:39,157 DEBUG ~ 
+    /* SELECT
+        DISTINCT RecipientCandidateNameNormalized 
+    FROM
+        CaliforniaCandidates 
+    where
+        RecipientCandidateNameNormalized is not null */ select
+            distinct california0_.RecipientCandidateNameNormalized as col_0_0_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.RecipientCandidateNameNormalized is not null
+10:15:54,235 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.DonorNameNormalized like ? 
+            or california0_.DonorOrganization like ? limit ?
+10:16:45,823 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.DonorNameNormalized like ? 
+            or california0_.DonorOrganization like ? limit ?
+10:23:00,840 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        c.RecipientCandidateNameNormalized IN (
+            ?, ?
+        ) 
+        AND (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            (
+                california0_.RecipientCandidateNameNormalized in (
+                    ? , ?
+                )
+            ) 
+            and (
+                california0_.DonorNameNormalized like ? 
+                or california0_.DonorOrganization like ?
+            ) limit ?
+10:23:31,071 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        c.RecipientCandidateNameNormalized IN (
+            ?
+        ) 
+        AND (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            (
+                california0_.RecipientCandidateNameNormalized in (
+                    ?
+                )
+            ) 
+            and (
+                california0_.DonorNameNormalized like ? 
+                or california0_.DonorOrganization like ?
+            ) limit ?
+10:23:47,770 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.DonorNameNormalized like ? 
+            or california0_.DonorOrganization like ? limit ?
+10:27:44,984 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCandidates c  
+    WHERE
+        (
+            c.DonorNameNormalized LIKE ? 
+            OR c.DonorOrganization LIKE ?
+        ) */ select
+            california0_.id as id3_,
+            california0_.DonorCity as DonorCity3_,
+            california0_.DonorCommitteeID as DonorCom3_3_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_3_,
+            california0_.DonorCommitteeParty as DonorCom5_3_,
+            california0_.DonorCommitteeType as DonorCom6_3_,
+            california0_.DonorEmployerNormalized as DonorEmp7_3_,
+            california0_.DonorEntityType as DonorEnt8_3_,
+            california0_.DonorIndustry as DonorInd9_3_,
+            california0_.DonorNameNormalized as DonorNa10_3_,
+            california0_.DonorOccupationNormalized as DonorOc11_3_,
+            california0_.DonorOrganization as DonorOr12_3_,
+            california0_.DonorState as DonorState3_,
+            california0_.DonorZipCode as DonorZi14_3_,
+            california0_.Election as Election3_,
+            california0_.ElectionCycle as Electio16_3_,
+            california0_.FiledDate as FiledDate3_,
+            california0_.FilerEntity as FilerEn18_3_,
+            california0_.FilerID as FilerID3_,
+            california0_.Flag as Flag3_,
+            california0_.PrimaryGeneralIndicator as Primary21_3_,
+            california0_.RecipientCandidateDistrict as Recipie22_3_,
+            california0_.RecipientCandidateICO as Recipie23_3_,
+            california0_.RecipientCandidateNameNormalized as Recipie24_3_,
+            california0_.RecipientCandidateOffice as Recipie25_3_,
+            california0_.RecipientCandidateParty as Recipie26_3_,
+            california0_.RecipientCandidateStatus as Recipie27_3_,
+            california0_.RecipientCommitteeNameNormalized as Recipie28_3_,
+            california0_.TransactionAmount as Transac29_3_,
+            california0_.TransactionDate as Transac30_3_,
+            california0_.TransactionID as Transac31_3_,
+            california0_.TransactionType as Transac32_3_ 
+        from
+            pwr_ca_contrib_cand_committees california0_ 
+        where
+            california0_.DonorNameNormalized like ? 
+            or california0_.DonorOrganization like ? limit ?
+I'm in committees!!
+10:27:53,525 DEBUG ~ 
+    /* SELECT
+        DISTINCT Election 
+    FROM
+        CaliforniaCommittees 
+    WHERE
+        Election is not null */ select
+            distinct california0_.Election as col_0_0_ 
+        from
+            pwr_ca_contrib_other_committees california0_ 
+        where
+            california0_.Election is not null
+10:27:58,253 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCommittees c  */ select
+            california0_.id as id0_,
+            california0_.DonorCity as DonorCity0_,
+            california0_.DonorCommitteeID as DonorCom3_0_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_0_,
+            california0_.DonorCommitteeParty as DonorCom5_0_,
+            california0_.DonorCommitteeType as DonorCom6_0_,
+            california0_.DonorEmployerNormalized as DonorEmp7_0_,
+            california0_.DonorEntityType as DonorEnt8_0_,
+            california0_.DonorIndustry as DonorInd9_0_,
+            california0_.DonorNameNormalized as DonorNa10_0_,
+            california0_.DonorOccupationNormalized as DonorOc11_0_,
+            california0_.DonorOrganization as DonorOr12_0_,
+            california0_.DonorState as DonorState0_,
+            california0_.DonorZipCode as DonorZi14_0_,
+            california0_.Election as Election0_,
+            california0_.ElectionCycle as Electio16_0_,
+            california0_.FiledDate as FiledDate0_,
+            california0_.FilerEntity as FilerEn18_0_,
+            california0_.FilerID as FilerID0_,
+            california0_.Flag as Flag0_,
+            california0_.Position as Position0_,
+            california0_.PrimaryGeneralIndicator as Primary22_0_,
+            california0_.RecipientCommitteeNameNormalized as Recipie23_0_,
+            california0_.Target as Target0_,
+            california0_.TransactionAmount as Transac25_0_,
+            california0_.TransactionDate as Transac26_0_,
+            california0_.TransactionID as Transac27_0_,
+            california0_.TransactionType as Transac28_0_ 
+        from
+            pwr_ca_contrib_other_committees california0_ limit ?
+10:28:04,871 DEBUG ~ 
+    /* SELECT
+        DISTINCT Target 
+    FROM
+        CaliforniaCommittees 
+    WHERE
+        Election = ? 
+    order by
+        Target */ select
+            distinct california0_.Target as col_0_0_ 
+        from
+            pwr_ca_contrib_other_committees california0_ 
+        where
+            california0_.Election=? 
+        order by
+            california0_.Target
+10:28:12,053 DEBUG ~ 
+    /* SELECT
+        c 
+    FROM
+        CaliforniaCommittees c 
+    WHERE
+        c.Election  = ?  */ select
+            california0_.id as id0_,
+            california0_.DonorCity as DonorCity0_,
+            california0_.DonorCommitteeID as DonorCom3_0_,
+            california0_.DonorCommitteeNameNormalized as DonorCom4_0_,
+            california0_.DonorCommitteeParty as DonorCom5_0_,
+            california0_.DonorCommitteeType as DonorCom6_0_,
+            california0_.DonorEmployerNormalized as DonorEmp7_0_,
+            california0_.DonorEntityType as DonorEnt8_0_,
+            california0_.DonorIndustry as DonorInd9_0_,
+            california0_.DonorNameNormalized as DonorNa10_0_,
+            california0_.DonorOccupationNormalized as DonorOc11_0_,
+            california0_.DonorOrganization as DonorOr12_0_,
+            california0_.DonorState as DonorState0_,
+            california0_.DonorZipCode as DonorZi14_0_,
+            california0_.Election as Election0_,
+            california0_.ElectionCycle as Electio16_0_,
+            california0_.FiledDate as FiledDate0_,
+            california0_.FilerEntity as FilerEn18_0_,
+            california0_.FilerID as FilerID0_,
+            california0_.Flag as Flag0_,
+            california0_.Position as Position0_,
+            california0_.PrimaryGeneralIndicator as Primary22_0_,
+            california0_.RecipientCommitteeNameNormalized as Recipie23_0_,
+            california0_.Target as Target0_,
+            california0_.TransactionAmount as Transac25_0_,
+            california0_.TransactionDate as Transac26_0_,
+            california0_.TransactionID as Transac27_0_,
+            california0_.TransactionType as Transac28_0_ 
+        from
+            pwr_ca_contrib_other_committees california0_ 
+        where
+            california0_.Election=? limit ?

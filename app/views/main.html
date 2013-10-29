@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head>
+  <title>#{get 'title' /}</title>
+  <meta charset="${_response_encoding}">
+  <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"/>
+  #{stylesheet 'bootstrap.min.css' /}
+  #{stylesheet 'maplight.css' /}
+  #{get 'moreStyles' /}
+
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+</head>
+
+<body>
+
+<div class="content">
+<div class="beta">
+	<strong>NOTE:</strong> This search is in BETA. Before citing, please contact MapLight data team via <a href="http://maplight.org/contact#research"  target="_blank" >email</a> or call 510-868-0894 and we will be happy to verify your results.
+</div>
+#{doLayout /}
+</div>
+</body>

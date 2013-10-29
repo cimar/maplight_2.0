@@ -1,0 +1,72 @@
+<script type="text/javascript" src="/public/datatables/js/fileload_anim.js"></script>
+<div style="position: relative;">
+  
+  #{if !raw_results}
+   <div><p><i>This page will not display more than 1,000<br/>entries.  To view the entire set please download <br/>the CSV file. or <a href=${url} target="_blank">link to the raw results</a>.</i></p></div> 
+  #{/if}
+ 
+  
+  <div class="row" style="position: absolute; top: -45px; right: 0px;">
+    #{form @CaliforniaController.byDonors(),  method:'POST' }
+    <input type="hidden" name="donor" value="${donor}" />
+    <input type="hidden" name="recipient" value="${recipient}" />
+    <input type="hidden" name="location-from" value="${location_from}" />
+    <input type="hidden" name="location-to" value="${location_to}" />
+    <input type="hidden" name="date_start" value="${date_start}" />
+    <input type="hidden" name="date_end" value="${date_end}" />  
+    <input type="hidden" name="office[]" value='${Arrays.toString(params.getAll("office[]"))}'/>  
+    <input type="hidden" name="download" value="true">
+    <input type="submit" name="dbutton" value="Download CSV File" class="btn">
+    #{/form}
+  </div>
+</div>
+<br/>
+
+Total donations: ${total.formatCurrency('USD')}
+<br/>
+<br/>
+<table id="data-table" class="cctable table table-bordered table-striped" style="max-width: initial; font-size: small;">
+<thead>
+
+      <th>Recipient Name</th>
+      <th>Recipient Committee</th>
+      <th>Office</th>
+      <th>District</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Donor Name</th>
+      <th>Donor Employer</th>
+      <th>Donor Occupation</th>
+      <th>Donor Organization</th>
+      <th>Donor City</th>
+      <th>Donor State</th>
+      <th>Donor Zip</th>
+      <th>Donor Entity Type</th>
+      <th>Transaction Type</th>            
+      <th>Transaction ID</th>
+      <th>Election Cycle</th>
+
+</thead>
+#{list items:cc, as:'contr'}
+<tr>
+      <td>${contr.RecipientCandidateNameNormalized}</td>
+      <td>${contr.RecipientCommitteeNameNormalized}</td>
+      <td>${contr.RecipientCandidateOffice}</td>
+      <td>${contr.RecipientCandidateDistrict}</td>
+      <td>${contr.TransactionDate}</td>
+      <td>${contr.TransactionAmount}</td>
+      <td>${contr.DonorNameNormalized}</td>
+      <td>${contr.DonorEmployerNormalized}</td>
+      <td>${contr.DonorOccupationNormalized}</td>
+      <td>${contr.DonorOrganization}</td>      
+      <td>${contr.DonorCity}</td>
+      <td>${contr.DonorState}</td>
+      <td>${contr.DonorZipCode}</td>
+      <td>${contr.DonorEntityType}</td>
+	  <td>${contr.TransactionType}</td>
+      <td>${contr.TransactionID}</td>
+      <td>${contr.ElectionCycle}</td>
+     
+</tr>
+#{/list}
+</table>
