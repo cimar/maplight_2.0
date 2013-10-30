@@ -41,17 +41,17 @@
 
       <h4>Committee(s)</h4>
       <div class="filter-committee control-group">
-      	<input type="radio" id="filter-committee-any" name="filter-committee" data-selector=".filter-committee-any-data" ${anyMeasure}/>
           
+          <input type="radio" id="filter-committee-any" name="filter-committee" data-selector=".filter-committee-any-data" checked="${anyMeasure}"/> 
           <label for="filter-committee-any" class="control-label radio inline" style="padding-left:0px"> Any non-candidate committee
           <input type="hidden" class="filter-committee-any-data" value="__any"/>
           </label>
           
           <div>
           <input type="radio" id="filter-committee-all" name="filter-committee" data-selector=".filter-committee-all-data" value="__ballot_measure" ${ballotMeasure}/>
-         	<label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure
-         	<input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>
-         	</label>
+          <label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure
+          <input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>
+         	 
          	
          <div id="ballot-measure">
          	
@@ -69,13 +69,16 @@
 					<option selected="selected">#{if position} ${position} #{/if} #{else} position #{/else}</option>
 				</select>
 		</div>
+		
 		</div>
-		<div>
+		</label>
+		
+		
 		<input type="radio" id="filter-committee-single" name="filter-committee" data-selector=".filter-committee-single-data" ${specificMeasure}/>
 			<label for="filter-committee-single" class="control-label radio inline" style="padding-left:0px">These committees...
-			</label>
 			<textarea id="filter-committee-single-data" class="filter-committee-single-data" title="Hello" autocomplete-type="committee" placeholder="These committees..." style="width:218px; margin-top:20px; padding-top:5px;">${committee}</textarea>
-		</div>
+			</label>
+		
 		
 		<div id="allied-committee-filter-div">              
            <input type="checkbox" id="allied-committee-filter" name="committees" value="CommitteeFilter" checked/>
