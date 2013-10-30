@@ -58,15 +58,15 @@
          	<div id="election-tooltip">
               <select class="step1" id="filter-election" name="electionCycle" title="">
 					
-					<option selected="selected">${election}</option>
+					<option selected="selected">#{if election} ${election} #{/if} #{else} election #{/else} </option>
 					
 				</select>
 			</div>
 				<select class="step2" id="filter-prop" name="proposition">
-					<option selected="selected">${proposition}</option>
+					<option selected="selected"> #{if proposition} ${proposition} #{/if} #{else} proposition #{/else}</option>
 				</select>
 				<select class="step3" id="filter-pos" name="position">
-					<option selected="selected">${position}</option>
+					<option selected="selected">#{if position} ${position} #{/if} #{else} position #{/else}</option>
 				</select>
 		</div>
 		</div>
