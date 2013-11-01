@@ -49,29 +49,25 @@
           
           <div>
           <input type="radio" id="filter-committee-all" name="filter-committee" data-selector=".filter-committee-all-data" value="__ballot_measure" ${ballotMeasure}/>
-          <label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure
-          <input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>
-         	 
-         	
-         <div id="ballot-measure">
-         	
-         	<div id="election-tooltip">
-              <select class="step1" id="filter-election" name="electionCycle" title="">
-					
-					<option selected="selected">#{if election} ${election} #{/if} #{else} election #{/else} </option>
-					
-				</select>
-			</div>
-				<select class="step2" id="filter-prop" name="proposition">
-					<option selected="selected"> #{if proposition} ${proposition} #{/if} #{else} proposition #{/else}</option>
-				</select>
-				<select class="step3" id="filter-pos" name="position">
-					<option selected="selected">#{if position} ${position} #{/if} #{else} position #{/else}</option>
-				</select>
+          <label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure 
+          <input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>   	
+          <div id="ballot-measure">
+             <select class="step1" id="filter-election" name="electionCycle" >
+				<option selected="selected">#{if election} ${election} #{/if} #{else} election #{/else} </option>
+			 </select>
+		    
+		     <select class="step2" id="filter-prop" name="proposition">
+				<option selected="selected"> #{if proposition} ${proposition} #{/if} #{else} proposition #{/else} </option>
+			</select>
+				
+			<select class="step3" id="filter-pos" name="position">
+				<option selected="selected"> #{if position} ${position} #{/if} #{else} position #{/else} </option>
+			</select>
+		 
 		</div>
-		
 		</div>
 		</label>
+		
 		
 		
 		<input type="radio" id="filter-committee-single" name="filter-committee" data-selector=".filter-committee-single-data" ${specificMeasure}/>
