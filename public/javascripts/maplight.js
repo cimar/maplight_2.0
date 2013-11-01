@@ -36,7 +36,8 @@ $(function() {
              var congress_select = $("#congress-select");
              console.log("HEYHEYHEY"+congress_select);
              for(x = 0; x < data.length; x++){
-            	 console.log(congress_select.append($('<option></option>').val(data[x]).html(data[x])));
+            	 //
+            	 //console.log(congress_select.append($('<option></option>').val(data[x]).html(data[x])));
             	 congress_select.append($('<option></option>').val(data[x]).text(data[x]));
              }
              $("#congress-select").multiselect({

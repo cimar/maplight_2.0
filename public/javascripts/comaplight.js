@@ -152,7 +152,7 @@ $(function() {
       						"committee": readData("filter-committee"),
 							"election" : $("#filter-election").val(),
 							"proposition" : $("#filter-prop").val(),
-							"position" : $("#filter-pos").val(),
+							"position" : $("#filter-pos").val() == "position" ? "all" : $("#filter-pos").val() ,
 							"allied_committee_bool" : $("#allied-committee-filter:checked").val(),
 							"location_from" : $("#filter-location-from").val(),
 							"location-to" : $("#filter-location-to").val(),
