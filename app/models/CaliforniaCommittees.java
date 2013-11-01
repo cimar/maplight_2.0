@@ -11,6 +11,7 @@ import play.templates.JavaExtensions;
 import javax.persistence.*;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -59,19 +60,19 @@ public class CaliforniaCommittees extends Model {
 	}
 
 	public static List<String> getPropositionByDate(String election) {
-		return find("SELECT DISTINCT Target FROM CaliforniaCommittees WHERE Election = ? order by Target", election).fetch();
+		return find("SELECT DISTINCT Target FROM CaliforniaCommittees WHERE Election = ? order by Target", election)
+				.fetch();
 	}
-	
-	//SELECT DISTINCT Target FROM CaliforniaCommittees WHERE ElectionCycle = 
 
-	
-	public static List<String> getCommitteeNames() { return find(
-	//		"SELECT DISTINCT RecipientCandidateNameNormalized FROM CaliforniaCandidates where RecipientCandidateNameNormalized is not null").fetch();
+	// SELECT DISTINCT Target FROM CaliforniaCommittees WHERE ElectionCycle =
 
-	  "SELECT DISTINCT RecipientCommitteeNameNormalized FROM CaliforniaCommittees where RecipientCommitteeNameNormalized is not null").fetch();
+	public static List<String> getCommitteeNames() {
+		return find(
+		// "SELECT DISTINCT RecipientCandidateNameNormalized FROM CaliforniaCandidates where RecipientCandidateNameNormalized is not null").fetch();
+
+				"SELECT DISTINCT RecipientCommitteeNameNormalized FROM CaliforniaCommittees where RecipientCommitteeNameNormalized is not null")
+				.fetch();
 	}// CaliforniaCommittees").fetch(); }
-	  
- 
 
 	public static List<String> getCompaniesNames() {
 		return find("SELECT DISTINCT DonorOrganization FROM CaliforniaCommittees").fetch();
@@ -106,14 +107,15 @@ public class CaliforniaCommittees extends Model {
 		// }
 		//
 		String ally_check = getOrEmpty(params, "allied_committee_bool");
-		
+
 		String sql = "SELECT c FROM CaliforniaCommittees c\n";
-		
-		if(ally_check != ""){
-			System.out.println("ally check = "+ally_check);
-			//sql = sql + "LEFT JOIN (SELECT DISTINCT FilerID, Election, Target, Position FROM CaliforniaCommittees) a ON c.DonorCommitteeID = a.FilerID AND c.Election = a.Election AND c.Target = a.Target AND c.Position = a.Position WHERE c.Target LIKE '%30%' AND a.FilerID is null";
+
+		if (ally_check != "") {
+			System.out.println("ally check = " + ally_check);
+			// sql = sql +
+			// "LEFT JOIN (SELECT DISTINCT FilerID, Election, Target, Position FROM CaliforniaCommittees) a ON c.DonorCommitteeID = a.FilerID AND c.Election = a.Election AND c.Target = a.Target AND c.Position = a.Position WHERE c.Target LIKE '%30%' AND a.FilerID is null";
 		}
-		
+
 		sql = sql + where.create();
 
 		Logger.info(sql.replace("?", "'%s'"), where.data.toArray());
@@ -127,10 +129,10 @@ public class CaliforniaCommittees extends Model {
 		WhereData where = constructWhereClauseFromParams(params);
 		String result = find("SELECT SUM(c.TransactionAmount) FROM CaliforniaCommittees c " + where.create(),
 				where.data.toArray()).first();
-		try{
+		try {
 			returnTotal = Float.parseFloat(result);
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		return returnTotal;
 	}
@@ -164,18 +166,26 @@ public class CaliforniaCommittees extends Model {
 		String location_to = getOrEmpty(params, "location-to");
 		String election = getOrEmpty(params, "election");
 		String position = getOrEmpty(params, "position");
-		System.out.println("Electio var="+ election);
+		System.out.println("Electio var=" + election);
 		String ally_check = getOrEmpty(params, "allied_committee_bool");
-		
+
 		proposition = proposition.replaceAll("\\\\", "");
-		
-		
-		System.out.println("committeeeee: "+committee);
+
+		try {
+			if (StringUtils.isNotBlank(proposition)) {
+				proposition = URLDecoder.decode(proposition, "UTF-8");
+			}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("committeeeee: " + committee);
 
 		WhereData data = new WhereData();
-		
+
 		System.out.println(committee);
-		
+
 		if (!committee.isEmpty()) {
 			if (committee.equals("__any")) {
 				System.out.print("INSIDE ANY");
@@ -184,11 +194,11 @@ public class CaliforniaCommittees extends Model {
 				System.out.print("INSIDE BALLOT");
 
 				if (!election.isEmpty() && !election.equalsIgnoreCase("all")) {
-					if (proposition.isEmpty() || proposition.equalsIgnoreCase("all")){
+					if (proposition.isEmpty() || proposition.equalsIgnoreCase("all")) {
 						data.append(" c.Election  = ? ", election);
 					}
 				}
-				if (!position.isEmpty() && !position.equalsIgnoreCase("all")) {				
+				if (!position.isEmpty() && !position.equalsIgnoreCase("all")) {
 					data.append(" c.Position = ? ", position);
 				}
 				if (!proposition.isEmpty() && !proposition.equalsIgnoreCase("all")) {
@@ -208,8 +218,6 @@ public class CaliforniaCommittees extends Model {
 			}
 		}
 
-
-
 		if (!donor.isEmpty()) {
 			String closeDonor = "%" + donor + "%";
 			data.append("(c.DonorNameNormalized LIKE ? OR c.DonorOrganization LIKE ?)", closeDonor, closeDonor);
@@ -226,7 +234,7 @@ public class CaliforniaCommittees extends Model {
 		if (!location_to.isEmpty()) {
 			data.append("RecipientCandidateOfficeState = ?", location_to);
 		}
-		if(ally_check != ""){
+		if (ally_check != "") {
 			data.append("c.Flag = 0");
 		}
 		return data;
