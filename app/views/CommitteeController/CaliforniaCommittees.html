@@ -4,6 +4,7 @@
   <div class="row" style="position: absolute; top: -45px; right: 0px;">
     #{form @CommitteeController.byDonors(),  method:'POST' }
     <input type="hidden" name="donor" value="${donor}" />
+    <input type="hidden" name="committee" value='${params.get("committee")}' />
     <input type="hidden" name="election" value='${params.get("election")}' />
     <input type="hidden" name="proposition" value='${params.get("proposition")}' />
     <input type="hidden" name="position" value='${params.get("position")}' />
@@ -12,6 +13,7 @@
     <input type="hidden" name="date_start" value="${date_start}" />
     <input type="hidden" name="date_end" value="${date_end}" />
     <input type="hidden" name="sessions" value="${sessions}"/>
+    <input type="hidden" name="ally_check" value="${allied_committee_bool}" />
     <input type="hidden" name="download" value="true">
     <input type="submit" name="dbutton" value="Download CSV File" class="btn">
     #{/form}
