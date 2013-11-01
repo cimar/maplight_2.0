@@ -10,6 +10,8 @@ import play.templates.JavaExtensions;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -164,13 +166,9 @@ public class CaliforniaCommittees extends Model {
 		String position = getOrEmpty(params, "position");
 		System.out.println("Electio var="+ election);
 		String ally_check = getOrEmpty(params, "allied_committee_bool");
-
-		try {
-			proposition = URLDecoder.decode(getOrEmpty(params, "proposition"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		proposition = proposition.replaceAll("\\\\", "");
+		
 		
 		System.out.println("committeeeee: "+committee);
 
