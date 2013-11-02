@@ -64,6 +64,13 @@ $(function() {
 
 		} ]
 	});
+	
+	
+	 $(".step1").click(function() {
+         
+         $("#filter-committee-all").prop("checked", true)
+         console.log($("#filter-committee-all"));
+ });
 
 	$("#filter-committee-single-data").tooltip({
 		content : "Type something",
@@ -246,6 +253,10 @@ $(function() {
     	console.log('committee = ', committee_ac);
       enableMultiAutocomplete(committee_ac, candidateNames);
     });
+  
+  
+ 
+  
   
   $(document).ready(function () {
 	  console.log($("#raw_results").val());
