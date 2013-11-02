@@ -13,7 +13,7 @@
     <input type="hidden" name="date_start" value="${date_start}" />
     <input type="hidden" name="date_end" value="${date_end}" />
     <input type="hidden" name="sessions" value="${sessions}"/>
-    <input type="hidden" name="ally_check" value="${allied_committee_bool}" />
+    <input type="hidden" name="ally_check" value='${params.get("allied_committee_bool")}' />
     <input type="hidden" name="download" value="true">
     <input type="submit" name="dbutton" value="Download CSV File" class="btn">
     #{/form}
