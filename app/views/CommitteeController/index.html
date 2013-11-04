@@ -35,49 +35,54 @@
       <h4>Donor</h4>
       <div class="filter-donor control-group">
         <div class="controls">
-          <input type="text" id="filter-donor" placeholder="Organization or individual" value="${donor}"/>
+          <input type="text" id="filter-donor" placeholder="Organization or individual"/>
         </div>
       </div>
 
       <h4>Committee(s)</h4>
+      <label for="filter-recipient-all" class="control-label radio inline" style="padding-left:0px">
+
       <div class="filter-committee control-group">
+      	<input type="radio" id="filter-committee-any" name="filter-committee" data-selector=".filter-committee-any-data" checked="${anyMeasure}"/>
           
-          <input type="radio" id="filter-committee-any" name="filter-committee" data-selector=".filter-committee-any-data" checked="${anyMeasure}"/> 
           <label for="filter-committee-any" class="control-label radio inline" style="padding-left:0px"> Any non-candidate committee
           <input type="hidden" class="filter-committee-any-data" value="__any"/>
           </label>
           
           <div>
           <input type="radio" id="filter-committee-all" name="filter-committee" data-selector=".filter-committee-all-data" value="__ballot_measure" ${ballotMeasure}/>
-          <label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure 
-          <input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>   	
-          <div id="ballot-measure">
-             <select class="step1" id="filter-election" name="electionCycle" >
-				<option selected="selected">#{if election} ${election} #{/if} #{else} election #{/else} </option>
-			 </select>
-		    
-		     <select class="step2" id="filter-prop" name="proposition">
-				<option selected="selected"> #{if proposition} ${proposition} #{/if} #{else} proposition #{/else} </option>
-			</select>
-				
-			<select class="step3" id="filter-pos" name="position">
-				<option selected="selected"> #{if position} ${position} #{/if} #{else} position #{/else} </option>
-			</select>
-		 
+         	<label for="filter-committee-all" class="control-label radio inline" style="padding-left:0px">Ballot Measure
+         	<input type="hidden" class="filter-committee-all-data" value="__ballot_measure"/>
+         	</label>
+
+         <div id="ballot-measure">
+         	
+         	<div id="election-tooltip">
+              <select class="step1" id="filter-election" name="electionCycle" title="">
+					
+					<option selected="selected" value="">${election}All elections...</option>
+					
+				</select>
+			</div>
+				<select class="step2" id="filter-prop" name="proposition">
+					<option selected="selected" value="">${proposition}All propositions...</option>
+				</select>
+				<select class="step3" id="filter-pos" name="position">
+					<option selected="selected" value="">${position}All positions..</option>
+				</select>
 		</div>
+
 		</div>
-		</label>
-		
-		
-		
+		<div>
 		<input type="radio" id="filter-committee-single" name="filter-committee" data-selector=".filter-committee-single-data" ${specificMeasure}/>
 			<label for="filter-committee-single" class="control-label radio inline" style="padding-left:0px">These committees...
+			
 			<textarea id="filter-committee-single-data" class="filter-committee-single-data" title="Hello" autocomplete-type="committee" placeholder="These committees..." style="width:218px; margin-top:20px; padding-top:5px;">${committee}</textarea>
-			</label>
-		
+	</label>
+		</div>
 		
 		<div id="allied-committee-filter-div">              
-           <input type="checkbox" id="allied-committee-filter" name="committees" value="CommitteeFilter"/>
+           <input type="checkbox" id="allied-committee-filter" name="committees" value="CommitteeFilter" checked/>
 			<label for="allied-committee-filter" class="control-label checkbox inline" style="padding-left:0px">
 			Exclude contribs between allied committees
 			</label>
@@ -85,11 +90,12 @@
           
       </div>
 
+
       <h4>Location</h4>
       <div class="filter-location control-group">
         <div>
           <label for="filter-location-from">From state</label>
-          <input type="text" id="filter-location-from" autocomplete-type="location" value="${location_from}" placeholder="NY, CA, etc."/>
+          <input type="text" id="filter-location-from" autocomplete-type="location" placeholder="NY, CA, etc."/>
         </div>
       <!--   <div>
           <label for="filter-location-to">To state</label>
@@ -101,17 +107,17 @@
       <div class="filter-date control-group">
         <div>
           <label for="filter-date-start">Start date</label>
-          <input type="date" id="filter-date-start" placeholder="yyyy-mm-dd" value="${date_start}"/>
+          <input type="date" id="filter-date-start" placeholder="yyyy-mm-dd"/>
         </div>
         <div>
           <label for="filter-date-end">End date</label>
-          <input type="date" id="filter-date-end" placeholder="yyyy-mm-dd" value="${date_end}"/>
+          <input type="date" id="filter-date-end" placeholder="yyyy-mm-dd"/>
         </div>
       </div>
 
       <h3>Run</h3>
       <button type="button" class="run-query btn btn-primary">Run Query</button>
-	  <input type="hidden" id="raw_results" value="${raw_results}">
+
     </form>
 
 </div>
@@ -127,3 +133,5 @@
   </div>
 </div>
  </div>
+
+</div>
