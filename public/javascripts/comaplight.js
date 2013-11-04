@@ -1,3 +1,4 @@
+//commenting this so i can re-commit it
 $(function() {
 
 	function addslashes(str) {
