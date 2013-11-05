@@ -75,7 +75,7 @@ public class CaliforniaController extends Controller {
 				candidatesName = "checked";
 			}
 			
-			System.out.println(Arrays.toString(office));
+			//System.out.println(Arrays.toString(office));
 			renderTemplate("CaliforniaController/index.html", anyOne, candidatesName, offices, donor, raw_results,
 					recipient, location_from, date_start, date_end, office);
 		} else {
