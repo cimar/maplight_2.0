@@ -86,6 +86,18 @@ public class CaliforniaCommittees extends Model {
 		String obj = params.get(key);
 		return obj == null ? default_ : obj;
 	}
+	
+	public static String decodeString(String str){
+		try {
+			if (StringUtils.isNotBlank(str)) {
+				str = URLDecoder.decode(str, "UTF-8");
+			}
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return str;
+	}
 
 	public static List<CaliforniaCommittees> get(Params params) {
 		// String recipient = getOrEmpty(params, "recipient");

@@ -51,6 +51,9 @@ public class CommitteeController extends Controller {
 				specificMeasure = "checked";
 			}
 
+			System.out.println("IN RAW RESULTS");
+			proposition = CaliforniaCommittees.decodeString(proposition);
+			
 			renderTemplate("CommitteeController/index.html", anyMeasure, ballotMeasure, specificMeasure, raw_results,
 					donor, date_start, date_end, location_from, location_to, election, proposition, position);
 

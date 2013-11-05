@@ -1,12 +1,13 @@
 
 <div style="position: relative;">
   <div><p><i>This page will not display more than 1,000<br/>entries.  To view the entire set please download <br/>the CSV file. or <a href=${url} target="_blank">link to the raw results</a>.</i></p></div>
+ 
   <div class="row" style="position: absolute; top: -45px; right: 0px;">
     #{form @CommitteeController.byDonors(),  method:'POST' }
     <input type="hidden" name="donor" value="${donor}" />
     <input type="hidden" name="committee" value='${params.get("committee")}' />
     <input type="hidden" name="election" value='${params.get("election")}' />
-    <input type="hidden" name="proposition" value='${params.get("proposition")}' />
+    <input type="hidden" name="proposition" value='${params.get("proposition").escape().raw()}' />
     <input type="hidden" name="position" value='${params.get("position")}' />
     <input type="hidden" name="location-from" value="${location_from}" />
     <input type="hidden" name="location-to" value="${location_to}" />

@@ -51,25 +51,26 @@
         <div>
           <input type="radio" id="filter-recipient-single" name="filter-recipient" data-selector=".filter-recipient-single-data" ${candidatesName}/>
 			<label for="filter-recipient-single" class="control-label radio inline" style="padding-left:0px">
-              	<textarea id="filter-recipient-single-data" class="filter-recipient-single-data"  title="Hello" autocomplete-type="candidate" placeholder="These candidates..." style="width:218px; margin-top:20px; padding-top:5px;">${recipient}</textarea>
+              	<textarea id="filter-recipient-single-data" class="filter-recipient-single-data"  title="Hello" autocomplete-type="candidate" 
+              	placeholder="These candidates..." style="width:218px; margin-top:20px; padding-top:5px;">${recipient}</textarea>
+        		
         	</label>
         </div>
-        <div>
-        
+        <div class="cadidates-office">    
         <input type="radio" id="filter-recipient-all" name="filter-recipient" data-selector=".filter-recipient-all-data" value="__office" ${offices}/>
          	<label for="filter-recipient-all" class="control-label radio inline" style="padding-left:0px">
+	          
 	           <select id="office" name="sessions[]" multiple="multiple" style="display: block; background-color: white"> 
-	        
+	       	   <input type="hidden" class="filter-recipient-all-data" value="office"/>
 	          #{if offices == "checked"}
 	           #{list items:office, as:'i'}
+	          
 	           <option selected="selected"> ${i} </option>     
 	           #{/list}   
 	           #{/if}  
 	           </select>
-	       	</label>            
-			           
-          
-        </div>
+	          </label> 
+	      </div>
       </div>
 
       <h4>Location</h4>

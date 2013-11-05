@@ -2,19 +2,23 @@
 $(function() {
 
 	function addslashes(str) {
-		str=str.replace(/\\/g,'\\\\');
-		str=str.replace(/\'/g,'\\\'');
-		str=str.replace(/\"/g,'\"');
-		str=str.replace(/\0/g,'\\0');
+		str = str.replace(/\\/g, '\\\\');
+		str = str.replace(/\'/g, '\\\'');
+		str = str.replace(/\"/g, '\"');
+		str = str.replace(/\0/g, '\\0');
 		return str;
-		}
+	}
 
-	$("#election-tooltip").tooltip({
-		content: "<p style='font-size:12px; line-height: 16px;'>Some ballot measure campaign committees support or oppose more than one proposition per election. Searching for all contributions within an election will return multiple instances of contributions for these committees.</p>",
-		position: { my: "left+15 center", at: "right center" }
+	$("#election-tooltip")
+			.tooltip(
+					{
+						content : "<p style='font-size:12px; line-height: 16px;'>Some ballot measure campaign committees support or oppose more than one proposition per election. Searching for all contributions within an election will return multiple instances of contributions for these committees.</p>",
+						position : {
+							my : "left+15 center",
+							at : "right center"
+						}
 
-	});
-	
+					});
 
 	$("#proposition-select").multiselect();
 
@@ -65,13 +69,10 @@ $(function() {
 
 		} ]
 	});
-	
-	
-	 $(".step1").click(function() {
-         
-         $("#filter-committee-all").prop("checked", true)
-         console.log($("#filter-committee-all"));
- });
+
+	$(".step1").click(function() {
+		$("#filter-committee-all").prop("checked", true);
+	});
 
 	$("#filter-committee-single-data").tooltip({
 		content : "Type something",
@@ -146,32 +147,35 @@ $(function() {
 						};
 
 						var readData = function(radioGroupName) {
-							
+
 							var toData = $(
 									"input[name=" + radioGroupName
 											+ "]:checked")
 									.attr("data-selector");
-							console.log(toData);
+							//console.log(toData);
 							return toData && $(toData).val() || "";
 						};
 
 						var requestData = {
 							"donor" : $("#filter-donor").val(),
-      						"committee": readData("filter-committee"),
+							"committee" : readData("filter-committee"),
 							"election" : $("#filter-election").val(),
 							"proposition" : $("#filter-prop").val(),
-							"position" : $("#filter-pos").val() == "position" ? "all" : $("#filter-pos").val(),
-							"allied_committee_bool" : $("#allied-committee-filter:checked").val(),
+							"position" : $("#filter-pos").val() == "position" ? "all"
+									: $("#filter-pos").val(),
+							"allied_committee_bool" : $(
+									"#allied-committee-filter:checked").val(),
 							"location_from" : $("#filter-location-from").val(),
 							"location-to" : $("#filter-location-to").val(),
 							"date_start" : $("#filter-date-start").val(), // changed
 							"date_end" : $("#filter-date-end").val(), // changed
 						};
 
-						
-						requestData['proposition'] = escape(requestData['proposition'].replace(/\\/g, ''));
-						
-						//console.log(requestData);
+						requestData['proposition'] = escape(requestData['proposition']
+								.replace(/\\/g, ''));
+						//console.log(requestData['proposition']);
+
+						// console.log(requestData);
 						$('.query-results').hide();
 						$('.query-loading').show();
 						$
@@ -200,68 +204,70 @@ $(function() {
 
 });
 
-	$("#filter-committee-single-data").tooltip({
-		content: "To search for multiple committees, separate their names with a semi-colon.  <i>e.x. THE PIXIES; BELLE & SEBASTIAN</i>",
-		position: { my: "left+15 center", at: "right center" }
-	});
+$("#filter-committee-single-data")
+		.tooltip(
+				{
+					content : "To search for multiple committees, separate their names with a semi-colon.  <i>e.x. THE PIXIES; BELLE & SEBASTIAN</i>",
+					position : {
+						my : "left+15 center",
+						at : "right center"
+					}
+				});
 
+var enableMultiAutocomplete = function(el, values) {
+	var split = function(val) {
+		return val.split(/;\s*/);
+	};
+	console.log(values);
+	el
+	// don't navigate away from the field on tab when selecting an item
+	.bind(
+			"keydown",
+			function(event) {
+				if (event.keyCode === $.ui.keyCode.TAB
+						&& $(this).data("ui-autocomplete").menu.active) {
+					event.preventDefault();
+				}
+			}).autocomplete(
+			{
+				minLength : 0,
+				source : function(request, response) {
+					console.log("request, response =", request.term, response);
+					var extractLast = function(term) {
+						return split(term).pop();
+					};
+					// delegate back to autocomplete, but extract the last term
+					response($.ui.autocomplete.filter(values,
+							extractLast(request.term)));
+				},
+				focus : function() {
+					// prevent value inserted on focus
+					return false;
+				},
+				select : function(event, ui) {
+					var terms = split(this.value);
+					// remove the current input
+					terms.pop();
+					// add the selected item
+					terms.push(ui.item.value);
+					// add placeholder to get the semi-colon-and-space at the
+					// end
+					terms.push("");
+					this.value = terms.join("; ");
+					return false;
+				}
+			});
+};
 
-	var enableMultiAutocomplete = function(el, values) {
-    var split = function( val ) {
-      return val.split( /;\s*/ );
-    };
-    console.log(values);
-    el
-      // don't navigate away from the field on tab when selecting an item
-      .bind( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).data( "ui-autocomplete" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-        	console.log("request, response =", request.term, response);
-          var extractLast = function( term ) {
-            return split( term ).pop();
-          };
-          // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            values, extractLast( request.term ) ) );
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the semi-colon-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( "; " );
-          return false;
-        }
-      });
-  };
+$.get("/api/comautocomplete/committees").done(function(candidateNames) {
+	var committee_ac = $("[autocomplete-type=committee]");
+	console.log('committee = ', committee_ac);
+	enableMultiAutocomplete(committee_ac, candidateNames);
+});
 
-  $.get("/api/comautocomplete/committees")
-    .done(function(candidateNames) {
-    	var committee_ac = $("[autocomplete-type=committee]");
-    	console.log('committee = ', committee_ac);
-      enableMultiAutocomplete(committee_ac, candidateNames);
-    });
-  
-  
- 
-  
-  
-  $(document).ready(function () {
-	  console.log($("#raw_results").val());
-	  if( $("#raw_results").val() == "true"){
-		  $(".run-query").click();
-	  }
-	});
+$(document).ready(function() {
+	console.log($("#raw_results").val());
+	if ($("#raw_results").val() == "true") {
+		$(".run-query").click();
+	}
+});

@@ -68,12 +68,14 @@ public class CaliforniaController extends Controller {
 
 			if ("__anyone".equals(recipient)) {
 				anyOne = "checked";
-			} else if (!StringUtils.isBlank(office[0])) {
+				recipient = "";
+			} else if ("office".equals(recipient)) {
 				offices = "checked";
 			} else {
 				candidatesName = "checked";
 			}
-			System.out.println("Checked or not " + candidatesName);
+			
+			System.out.println(Arrays.toString(office));
 			renderTemplate("CaliforniaController/index.html", anyOne, candidatesName, offices, donor, raw_results,
 					recipient, location_from, date_start, date_end, office);
 		} else {
