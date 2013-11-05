@@ -60,15 +60,33 @@
          	<div id="election-tooltip">
               <select class="step1" id="filter-election" name="electionCycle" title="">
 					
-					<option selected="selected" value="#{if election}${election}#{/if}">#{if election}${election}#{/if} #{else} All elections...#{/else}</option>
-					
+					#{if election}
+					<option selected="selected" value="${election}">${election}</option>
+					<option  value="">All elections...</option>
+					#{/if}
+					#{else}
+					<option selected="selected" value="">All elections...</option>
+					#{/else}
 				</select>
 			</div>
 				<select class="step2" id="filter-prop" name="proposition">
-					<option selected="selected" value="#{if proposition}${proposition}#{/if}">#{if proposition}${proposition}#{/if}#{else}All propositions...#{/else}</option>
+					#{if proposition}
+						<option selected="selected" value="${proposition}">${proposition}</option>
+						<option value="">All propositions...</option>
+					#{/if}
+					#{else}
+					<option selected="selected" value="">All propositions...</option>
+					#{/else}
 				</select>
+				
 				<select class="step3" id="filter-pos" name="position">
-					<option selected="selected" value="#{if position}${position}#{/if}">#{if position}${position}#{/if}#{else}All positions..#{/else}</option>
+				    #{if position}
+					<option selected="selected" value="${position}">${position}</option>
+					<option  value="">All positions...</option>
+					#{/if}
+					#{else}
+					<option selected="selected" value="">All positions...</option>
+					#{/else}
 				</select>
 		</div>
 
