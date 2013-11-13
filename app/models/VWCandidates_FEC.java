@@ -14,7 +14,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "vw_candidates")
-public class VWCandidates extends GenericModel {
+public class VWCandidates_FEC extends GenericModel {
 	
 	@Id
 	public int candidate_id;
@@ -34,13 +34,13 @@ public class VWCandidates extends GenericModel {
 	@Column(name = "recipient_fec_id", insertable = false, updatable = false)
 	public String recipient_fec_id;
 	
-	@ManyToOne(targetEntity = CandidateContributions.class)
-	@JoinColumn(name = "recipient_fec_id", referencedColumnName = "RecipientCandidateFECID")
- 	public List<CandidateContributions> candidateContribution;
-
-//	@ManyToOne(targetEntity = FECCandidates.class)
+//	@ManyToOne(targetEntity = CandidateContributions.class)
 //	@JoinColumn(name = "recipient_fec_id", referencedColumnName = "RecipientCandidateFECID")
-//	public List<FECCandidates> fecCandidate;
+//	public List<CandidateContributions> candidateContribution;
+
+	@ManyToOne(targetEntity = FECCandidates.class)
+	@JoinColumn(name = "recipient_fec_id", referencedColumnName = "RecipientCandidateFECID")
+	public List<FECCandidates> fecCandidate;
 	
 	public static List<String> getSessionDropDown(){
 		return find("SELECT DISTINCT description FROM VWCandidates WHERE description is not null ORDER BY description ASC").fetch();

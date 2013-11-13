@@ -1,0 +1,111 @@
+#{extends 'main.html' /}
+#{set title:'MapLight Query' /}
+
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"/>
+  #{stylesheet 'bootstrap.min.css' /}
+  #{set 'moreStyles'}
+  <link rel="stylesheet" type="text/css" href="/public/datatables/css/jquery.dataTables.css"/>
+  #{stylesheet 'jquery.multiselect.css' /}
+  #{stylesheet 'query.css' /}
+  #{/set}
+  
+  <script type="text/javascript" src="/public/datatables/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="/public/cascadingdropdown/jquery.cascadingdropdown.js"></script>
+  #{script 'jquery.multiselect.min.js' /}
+  #{script 'comaplight.js' /}
+  #{script 'states.js' /}
+
+
+#{if flash.error}
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>${flash.error}</strong>
+</div>
+#{/if}
+
+<div class="row">
+
+  <div class="span4" style="padding-left: 20px; border-right: solid 1px lightgray;">
+
+    <form>
+
+            <h3>Search contributions to <h2>California Committees</h2> <small>(Change to <a href="../California">CANDIDATES</a>)</small></h3>
+
+
+      <h4>Donor</h4>
+      <div class="filter-donor control-group">
+        <div class="controls">
+          <input type="text" id="filter-donor" placeholder="Organization or individual"/>
+        </div>
+      </div>
+
+      <h4>Recipient(s)</h4>
+      <div class="filter-recipient control-group">
+         <div id="ballot-measure">
+           
+            Ballot Measure
+         	
+         	<div id="election-tooltip">
+              <select class="step1" id="filter-election" name="electionCycle" title="">
+					<option value="">All elections..</option>
+				</select>
+			</div>
+				<select class="step2" id="filter-prop" name="proposition">
+					<option value="">All propositions..</option>
+				</select>
+				<select class="step3" id="filter-pos" name="position">
+					<option value="">All positions..</option>
+				</select>
+		<div id="allied-committee-filter-div" style="display:none">              
+           <input type="checkbox" id="allied-committee-filter" name="committees" value="CommitteeFilter" checked/>
+			<label for="allied-committee-filter" class="control-label checkbox inline" style="padding-left:0px">
+			Exclude contribs between allied committees
+			</label>
+         </div>
+        </div>    	  
+      </div>
+
+      <h4>Location</h4>
+      <div class="filter-location control-group">
+        <div>
+          <label for="filter-location-from">From state</label>
+          <input type="text" id="filter-location-from" autocomplete-type="location" placeholder="NY, CA, etc."/>
+        </div>
+      <!--   <div>
+          <label for="filter-location-to">To state</label>
+          <input type="text" id="filter-location-to" autocomplete-type="location" placeholder="NY, CA, etc."/>
+        </div> -->
+      </div>
+
+      <h4>Date</h4>
+      <div class="filter-date control-group">
+        <div>
+          <label for="filter-date-start">Start date</label>
+          <input type="date" id="filter-date-start" placeholder="yyyy-mm-dd"/>
+        </div>
+        <div>
+          <label for="filter-date-end">End date</label>
+          <input type="date" id="filter-date-end" placeholder="yyyy-mm-dd"/>
+        </div>
+      </div>
+
+      <h3>Run</h3>
+      <button type="button" class="run-query btn btn-primary">Run Query</button>
+
+    </form>
+
+</div>
+
+
+<div class="span8">
+    <h3>Query results</h3>
+     <div class="query-loading">Loading
+    </div>
+    <div class="query-results">
+      They'll be here after you run a query.
+    </div>    
+  </div>
+</div>
+ </div>
+
+</div>

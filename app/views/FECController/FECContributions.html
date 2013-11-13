@@ -14,7 +14,7 @@
     <input type="hidden" name="location-to" value="${location_to}" />
     <input type="hidden" name="date_start" value="${date_start}" />
     <input type="hidden" name="date_end" value="${date_end}" />  
-    <input type="hidden" name="office[]" value='${Arrays.toString(params.getAll("office[]"))}'/>  
+    <input type="hidden" name="sessions" value='${Arrays.toString(params.getAll("sessions[]"))}'/>  
     <input type="hidden" name="download" value="true">
     <input type="submit" name="dbutton" value="Download CSV File" class="btn">
     #{/form}

@@ -2,20 +2,20 @@ package controllers;
 
 import java.util.List;
 
-import models.CandidateContributions;
+import models.FECCandidates;
 import models.CaliforniaCandidates;
 import play.mvc.Controller;
 
 public class AutoComplete extends Controller {
 	public static void candidates() {
-		renderJSON(CandidateContributions.getCandidatesNames());
+		renderJSON(FECCandidates.getCandidatesNames());
 	}
 	
 	public static void companies() {
-		renderJSON(CandidateContributions.getCompaniesNames());
+		renderJSON(FECCandidates.getCompaniesNames());
 	}
 	
 	public static void currentCandidates() {
-		renderJSON(CandidateContributions.getCurrentCandidates());	
+		renderJSON(FECCandidates.getCurrentCandidates());	
 	}
 }

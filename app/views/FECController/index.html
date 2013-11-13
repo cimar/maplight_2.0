@@ -1,0 +1,118 @@
+#{extends 'main.html' /}
+#{set title:'MapLight Query' /}
+
+
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"/>
+  #{stylesheet 'bootstrap.min.css' /}
+  #{set 'moreStyles'}
+  <link rel="stylesheet" type="text/css" href="/public/datatables/css/jquery.dataTables.css"/>
+  #{stylesheet 'jquery.multiselect.css' /}
+  #{stylesheet 'query.css' /}
+  #{/set}
+  
+  <script type="text/javascript" src="/public/datatables/js/jquery.dataTables.min.js"></script>
+  #{script 'jquery.multiselect.min.js' /}
+  #{script 'faplight.js' /}
+  #{script 'states.js' /}
+
+
+#{if flash.error}
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>${flash.error}</strong>
+</div>
+#{/if}
+
+<div class="row">
+
+  <div class="span4" style="padding-left: 20px; border-right: solid 1px lightgray;">
+
+
+	
+    <form>
+
+      <h2>FEC Database Search Tool</h2>
+
+      <h4>Donor</h4>
+      <div class="filter-donor control-group">
+        <div class="controls">
+          <input type="text" id="filter-donor" value="${donor}" placeholder="Organization or individual"/>
+        </div>
+      </div>
+
+      <h4>Recipient(s)</h4>
+      <div class="filter-recipient control-group">
+        <div>
+          <input type="radio" id="filter-recipient-anyone" name="filter-recipient" data-selector=".filter-recipient-anyone-data" checked="${anyOne}"/>
+          <label for="filter-recipient-anyone" class="control-label radio inline" style="padding-left:0px"> Anyone
+            <input type="hidden" class="filter-recipient-anyone-data" value="__anyone"/>
+          </label>
+        </div>
+        <div>
+          <input type="radio" id="filter-recipient-single" name="filter-recipient" data-selector=".filter-recipient-single-data" ${candidatesName}/>
+			<label for="filter-recipient-single" class="control-label radio inline" style="padding-left:0px">
+              	<textarea id="filter-recipient-single-data" class="filter-recipient-single-data"  title="Hello" autocomplete-type="candidate" 
+              	placeholder="These candidates..." style="width:218px; margin-top:20px; padding-top:5px;">${recipient}</textarea>
+        		
+        	</label>
+        </div>
+        <div class="cadidates-office">    
+        <input type="radio" id="filter-recipient-all" name="filter-recipient" data-selector=".filter-recipient-all-data" value="__office" ${offices}/>
+         	<label for="filter-recipient-all" class="control-label radio inline" style="padding-left:0px">
+	           <input type="hidden" class="filter-recipient-all-data" value="office"/>
+	           <select id="office" name="sessions[]" multiple="multiple" style="display: block; background-color: white"> 
+	       	   
+	          #{if offices == "checked"}
+	           #{list items:office, as:'i'}
+	          
+	           <option selected="selected"> ${i} </option>     
+	           #{/list}   
+	           #{/if}  
+	           </select>
+	          </label> 
+	      </div>
+      </div>
+
+      <h4>Location</h4>
+      <div class="filter-location control-group">
+        <div>
+          <label for="filter-location-from">From state</label>
+          <input type="text" id="filter-location-from" autocomplete-type="location" value="${location_from}" placeholder="NY, CA, etc."/>
+        </div>
+       <!--  <div>
+          <label for="filter-location-to">To state</label>
+          <input type="text" id="filter-location-to" autocomplete-type="location" placeholder="NY, CA, etc."/>
+        </div>-->
+      </div>
+
+      <h4>Date</h4>
+      <div class="filter-date control-group">
+        <div>
+          <label for="filter-date-start">Start date</label>
+          <input type="date" id="filter-date-start" value="${date_start}" placeholder="yyyy-mm-dd"/>
+        </div>
+        <div>
+          <label for="filter-date-end">End date</label>
+          <input type="date" id="filter-date-end" value ="${date_end}" placeholder="yyyy-mm-dd"/>
+        </div>
+      </div>
+
+      <h3>Run</h3>
+      <button type="button" class="run-query btn btn-primary">Run Query</button>
+	  <input type="hidden" id="raw_results" value="${raw_results}">
+	  
+    </form>
+
+</div>
+
+<div class="span8">
+    <h3>Query results</h3>
+    <div class="run-query-error alert alert-error"></div>
+    <div class="query-loading">Loading
+    </div>
+    <div class="query-results">
+      They'll be here after you run a query.
+    </div>    
+  </div>
+</div>
+

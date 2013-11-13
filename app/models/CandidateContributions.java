@@ -144,11 +144,11 @@ public static List<String> getRecipientNamesDropdown(String state){
   }
 
   public static List<CandidateContributions> get(Params params, String[] sessions) {
-    String recipient = getOrEmpty(params, "recipient");
-    String donor = getOrEmpty(params, "donor");
-    if (recipient.isEmpty() && donor.isEmpty()) {
-      return new ArrayList<CandidateContributions>();
-    }
+    //String recipient = getOrEmpty(params, "recipient");
+    //String donor = getOrEmpty(params, "donor");
+    //if (recipient.isEmpty() && donor.isEmpty()) {
+    //  return new ArrayList<CandidateContributions>();
+    //}
     WhereData where = constructWhereClauseFromParams(params, sessions);
 //    TODO(rkj): ORDER cannot be parametrized in MySQL, I do not have time
 //      to escape this on my own...
@@ -163,24 +163,31 @@ public static List<String> getRecipientNamesDropdown(String state){
 //    }
 //    
     String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n" : "SELECT c FROM CandidateContributions c\n";
-      sql = sql +  where.create();
-    
+    sql = sql +  where.create();
     
     Logger.info(sql.replace("?", "'%s'"), where.data.toArray());
     System.err.printf(sql.replace("?", "'%s'") + "\n", where.data.toArray());
     JPAQuery query = find(sql, where.data.toArray());
+    
     return query.fetch(getLimit(params));
   }
 
   public static float getTotal(Params params, String[] sessions) {
+	float returnTotal = 0;
     WhereData where = constructWhereClauseFromParams(params, sessions);
     String result = find(
         "SELECT SUM(c.TransactionAmount) FROM CandidateContributions c " + where.create(),
         where.data.toArray()).first();
-    return Float.parseFloat(result);
-  }
+    try{
+		returnTotal = Float.parseFloat(result);
+	}catch(Exception e){
+		
+	}
+	return returnTotal;
+}
 
   private static final int LIMIT = 1000;
+  
   private static int getLimit(Params params) {
       if (!getOrEmpty(params, "download").isEmpty()) {
         return Integer.MAX_VALUE;
