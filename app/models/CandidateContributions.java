@@ -156,12 +156,13 @@ public class CandidateContributions extends Model { // GenericModel {
 
 		if (params.get("download") != null && params.get("download").equals("true")) {
 			String tempSessions = params.get("sessions");
+			System.out.println("In here");
 			sessions = tempSessions.replaceAll("\\]|\\[", "").split("\\s*,\\s*");
 		}
 
 		WhereData where = constructWhereClauseFromParams(params, sessions);
 
-		String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
+		String sql = (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null") ) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
 				: "SELECT c FROM CandidateContributions c\n";
 		sql = sql + where.create();
 
@@ -235,7 +236,7 @@ public class CandidateContributions extends Model { // GenericModel {
 			}
 		}
 
-		if (sessions != null && sessions[0].length() > 1) {
+		if (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null")) {
 			List<String> dummy = new LinkedList<String>();
 			for (int x = 0; x < sessions.length; x++) {
 				dummy.add("?");
