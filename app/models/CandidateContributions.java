@@ -161,8 +161,8 @@ public class CandidateContributions extends Model { // GenericModel {
 
 		WhereData where = constructWhereClauseFromParams(params, sessions);
 
-		String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
-				: "SELECT c FROM CandidateContributions c\n";
+		String sql = (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null") ) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
+                : "SELECT c FROM CandidateContributions c\n";
 		sql = sql + where.create();
 
 		Logger.info(sql.replace("?", "'%s'"), where.data.toArray());
@@ -235,7 +235,7 @@ public class CandidateContributions extends Model { // GenericModel {
 			}
 		}
 
-		if (sessions != null && sessions[0].length() > 1) {
+		if (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null")) {
 			List<String> dummy = new LinkedList<String>();
 			for (int x = 0; x < sessions.length; x++) {
 				dummy.add("?");
