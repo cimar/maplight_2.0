@@ -25,8 +25,17 @@ $(function() {
 	$('#filter-recipient-single-data').on('click', function() {
 		$('.filter-recipient-single-data').focus();
 		$("#filter-recipient-single").prop("checked", true);
+		$("#congress-select").multiselect("uncheckAll");
 
 	});
+	
+	
+	$('#anyone-label').on('click', function() {
+		
+		$("#congress-select").multiselect("uncheckAll");
+
+	});
+	
 
 	$(document).on('click', 'th', function(e) {
 		var header = $(this);
@@ -49,7 +58,14 @@ $(function() {
 			//header : false
 			});
 		}
-	});
+	}).done(function() {
+		$("#congress-select").multiselect({
+			click: function(event, ui){
+		       $("#filter-recipient-all").prop("checked",true);
+		    }
+		});
+
+});
 
 	$("#filter-recipient-single-data")
 			.tooltip(
@@ -110,7 +126,9 @@ $(function() {
 		var candidate_ac = $("[autocomplete-type=candidate]");
 		console.log('candidate_ac = ', candidate_ac);
 		enableMultiAutocomplete(candidate_ac, candidateNames);
+		//$("[autocomplete-type=candidate]").prop('disabled',true);
 	});
+
 
 	// $.widget( "custom.catcomplete", $.ui.autocomplete, {
 	//   _renderMenu: function( ul, items ) {
