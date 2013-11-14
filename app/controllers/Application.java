@@ -19,7 +19,6 @@ public class Application extends Controller {
 
 		List<CandidateContributions> cc = CandidateContributions.get(params, sessions);
 
-		int total = 0;
 		/*
 		 * if (cc.size() > 0) { total = CandidateContributions.getTotal(params); }
 		 */
@@ -30,6 +29,9 @@ public class Application extends Controller {
 		} else {
 
 			//System.out.println(params.toString());
+			float total = 0;
+			// total = CaliforniaCandidates.getTotal(params);
+			total = CaliforniaCandidates.getTotal(params);
 			renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start,
 					date_end, location_from, location_to, sessions);
 		}
