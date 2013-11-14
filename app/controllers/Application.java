@@ -31,7 +31,7 @@ public class Application extends Controller {
 			//System.out.println(params.toString());
 			float total = 0;
 			// total = CaliforniaCandidates.getTotal(params);
-			total = CaliforniaCandidates.getTotal(params);
+			total = CandidateContributions.getTotal(params, sessions);
 			renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start,
 					date_end, location_from, location_to, sessions);
 		}
