@@ -8,30 +8,29 @@ import java.util.*;
 import models.*;
 
 public class Application extends Controller {
-  public static void index() {
-    render();
-  }
+	public static void index() {
+		render();
+	}
 
-  public static void byDonors(String donor, String recipient, String date_start, String date_end,
-      String location_from, String location_to, boolean download, String[] sessions) {
-   // System.out.println(sessions[0]);
-    
-    int total = 0;
-/*    if (cc.size() > 0) {
-      total = CandidateContributions.getTotal(params);
-    }
-*/
-    if (download) {
-      List<FECCandidates> cc = FECCandidates.get(params,sessions);
-      System.out.println("download:");
-	  System.out.println(params.toString());
-      response.setHeader("Content-Disposition", "attachment; filename=download.csv");
-      renderTemplate("Application/CandidateContributions.csv", cc);
-    } else {
-        List<FECCandidates> cc = FECCandidates.get(params,sessions);
-  	  System.out.println(params.toString());
-    	renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start, 
-          date_end, location_from, location_to, sessions);
-    }
-  }
+	public static void byDonors(String donor, String recipient, String date_start, String date_end,
+			String location_from, String location_to, boolean download, String[] sessions) {
+		// System.out.println(sessions[0]);
+
+		List<CandidateContributions> cc = CandidateContributions.get(params, sessions);
+
+		int total = 0;
+		/*
+		 * if (cc.size() > 0) { total = CandidateContributions.getTotal(params); }
+		 */
+		if (download) {
+
+			response.setHeader("Content-Disposition", "attachment; filename=download.csv");
+			renderTemplate("Application/CandidateContributions.csv", cc);
+		} else {
+
+			System.out.println(params.toString());
+			renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start,
+					date_end, location_from, location_to, sessions);
+		}
+	}
 }
