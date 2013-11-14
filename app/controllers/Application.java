@@ -30,7 +30,7 @@ public class Application extends Controller {
 
 			float total = 0;
 
-			total = CandidateContributions.getTotal(params, sessions);
+			total = CandidateContributions.getTotal(cc);
 			renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start,
 					date_end, location_from, location_to, sessions);
 		}

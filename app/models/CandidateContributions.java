@@ -157,15 +157,16 @@ public class CandidateContributions extends Model { // GenericModel {
 		// }
 
 		if (params.get("download") != null && params.get("download").equals("true")) {
-			
+
 			String tempSessions = params.get("sessions").equals("null") ? null : params.get("sessions");
-			
-			sessions = StringUtils.isNotBlank(tempSessions) ? tempSessions.replaceAll("\\]|\\[", "").split("\\s*,\\s*") : null;
+
+			sessions = StringUtils.isNotBlank(tempSessions) ? tempSessions.replaceAll("\\]|\\[", "").split("\\s*,\\s*")
+					: null;
 		}
 
 		WhereData where = constructWhereClauseFromParams(params, sessions);
 
-		String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
+		String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT DISTINCT c FROM CandidateContributions c, in(c.cand) ci \n"
 
 				: "SELECT c FROM CandidateContributions c\n";
 
@@ -178,28 +179,13 @@ public class CandidateContributions extends Model { // GenericModel {
 		return query.fetch(getLimit(params));
 	}
 
-	public static float getTotal(Params params, String[] sessions) {
-		System.out.println("INSIDE GETTOTAL");
+	public static float getTotal(List<CandidateContributions> cc) {
 		float returnTotal = 0;
-		WhereData where = constructWhereClauseFromParams(params, sessions);
-		String result = "";
-		if(sessions != null && sessions[0].length() > 1){
-			
-			System.out.println("Sessions not null!");
-			
-			result = find("SELECT SUM(c.TransactionAmount) FROM CandidateContributions c, in(c.cand) ci " + where.create(), where.data.toArray()).first();
-			
-		}else{
-
-			System.out.println("Sessions null!");
-			
-			result = find("SELECT SUM(c.TransactionAmount) FROM CandidateContributions c " + where.create(),
-				where.data.toArray()).first();
-		}
-		try {
-			returnTotal = Float.parseFloat(result);
-		} catch (Exception e) {
-
+		System.out.println("Adding Transaction Amount");
+		for (int i = 0; i < cc.size(); i++) {
+			if (StringUtils.isNotBlank(cc.get(i).TransactionAmount)) {
+			returnTotal = returnTotal + Float.parseFloat(cc.get(i).TransactionAmount);
+			}
 		}
 		return returnTotal;
 	}
