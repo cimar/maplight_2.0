@@ -9,7 +9,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 //import models.CandidateContributions;
-import models.FECCandidates;
+
 import java.util.*;
 
 @Entity

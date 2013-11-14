@@ -142,8 +142,8 @@ $(function() {
     var requestData = {
       "donor": $("#filter-donor").val(),
       "recipient": readData("filter-recipient"),
-      "location-from": $("#filter-location-from").val(),
-      "location-to": $("#filter-location-to").val(),
+      "location_from": $("#filter-location-from").val(),
+      "location_to": $("#filter-location-to").val(),
       "date_start": $("#filter-date-start").val(), //changed
       "date_end": $("#filter-date-end").val(), //changed
       "sessions": $("#congress-select").val()

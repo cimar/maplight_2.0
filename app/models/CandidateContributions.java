@@ -9,6 +9,8 @@ import play.templates.JavaExtensions;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -155,14 +157,15 @@ public class CandidateContributions extends Model { // GenericModel {
 		// }
 
 		if (params.get("download") != null && params.get("download").equals("true")) {
-			String tempSessions = params.get("sessions");
-			System.out.println("In here");
-			sessions = tempSessions.replaceAll("\\]|\\[", "").split("\\s*,\\s*");
+			
+			String tempSessions = params.get("sessions").equals("null") ? null : params.get("sessions");
+			
+			sessions = StringUtils.isNotBlank(tempSessions) ? tempSessions.replaceAll("\\]|\\[", "").split("\\s*,\\s*") : null;
 		}
 
 		WhereData where = constructWhereClauseFromParams(params, sessions);
 
-		String sql = (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null")) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
+		String sql = (sessions != null && sessions[0].length() > 1) ? "SELECT c FROM CandidateContributions c, in(c.cand) ci \n"
 
 				: "SELECT c FROM CandidateContributions c\n";
 
@@ -211,8 +214,8 @@ public class CandidateContributions extends Model { // GenericModel {
 		String donor = getOrEmpty(params, "donor");
 		String date_start = getOrEmpty(params, "date_start");
 		String date_end = getOrEmpty(params, "date_end");
-		String location_from = getOrEmpty(params, "location-from");
-		String location_to = getOrEmpty(params, "location-to");
+		String location_from = getOrEmpty(params, "location_from");
+		String location_to = getOrEmpty(params, "location_to");
 
 		// if (params.getAll("sessions") != null){
 		// System.out.println("In here");
@@ -238,7 +241,7 @@ public class CandidateContributions extends Model { // GenericModel {
 			}
 		}
 
-		if (sessions != null && sessions[0].length() > 1 && !sessions[0].equals("null")) {
+		if (sessions != null && sessions[0].length() > 1) {
 			List<String> dummy = new LinkedList<String>();
 			for (int x = 0; x < sessions.length; x++) {
 				dummy.add("?");
