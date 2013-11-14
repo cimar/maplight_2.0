@@ -179,10 +179,23 @@ public class CandidateContributions extends Model { // GenericModel {
 	}
 
 	public static float getTotal(Params params, String[] sessions) {
+		System.out.println("INSIDE GETTOTAL");
 		float returnTotal = 0;
 		WhereData where = constructWhereClauseFromParams(params, sessions);
-		String result = find("SELECT SUM(c.TransactionAmount) FROM CandidateContributions c " + where.create(),
+		String result = "";
+		if(sessions != null && sessions[0].length() > 1){
+			
+			System.out.println("Sessions not null!");
+			
+			result = find("SELECT SUM(c.TransactionAmount) FROM CandidateContributions c, in(c.cand) ci " + where.create(), where.data.toArray()).first();
+			
+		}else{
+
+			System.out.println("Sessions null!");
+			
+			result = find("SELECT SUM(c.TransactionAmount) FROM CandidateContributions c " + where.create(),
 				where.data.toArray()).first();
+		}
 		try {
 			returnTotal = Float.parseFloat(result);
 		} catch (Exception e) {

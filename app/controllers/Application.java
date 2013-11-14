@@ -29,6 +29,7 @@ public class Application extends Controller {
 		} else {
 
 			float total = 0;
+
 			total = CandidateContributions.getTotal(params, sessions);
 			renderTemplate("Application/CandidateContributions.html", cc, total, donor, recipient, date_start,
 					date_end, location_from, location_to, sessions);
