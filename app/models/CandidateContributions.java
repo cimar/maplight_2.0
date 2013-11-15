@@ -176,7 +176,9 @@ public class CandidateContributions extends Model { // GenericModel {
 		System.err.printf(sql.replace("?", "'%s'") + "\n", where.data.toArray());
 		JPAQuery query = find(sql, where.data.toArray());
 
-		return query.fetch(getLimit(params));
+		
+		
+		return  query.fetch(Integer.MAX_VALUE);
 	}
 
 	public static float getTotal(List<CandidateContributions> cc) {
