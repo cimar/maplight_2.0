@@ -38,7 +38,7 @@ Total donations: ${total.formatCurrency('USD')}
       <th>State</th>
       <th>District</th>
       <th>Status</th>
-      <th>ID</th>
+      <th>Record Number FEC</th>
       <th>Up Date</th>
 </thead>
 #{list items:smallCC, as:'contr'}
@@ -58,7 +58,7 @@ Total donations: ${total.formatCurrency('USD')}
       <td>${contr.RecipientCandidateOfficeState}</td>
       <td>${contr.RecipientCandidateDistrict}</td>
       <td>${contr.RecipientCandidateStatus}</td>
-      <td>${contr.TransactionID}</td>
+      <td>${contr.RecordNumberFEC}</td>
       <td>${contr.UpdateTimestamp}</td>
 </tr>
 #{/list}
