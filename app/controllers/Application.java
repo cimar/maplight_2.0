@@ -21,7 +21,13 @@ public class Application extends Controller {
 		List<CandidateContributions> cc = CandidateContributions.get(params, sessions);
 		List<CandidateContributions> smallCC = new ArrayList();
 		
-		for(int x = 0; x < 1000; x++){
+		int small_limit = 1000;
+		
+		if(cc.size()<small_limit){
+			small_limit = cc.size();
+		}
+		
+		for(int x = 0; x < small_limit; x++){
 			smallCC.add(cc.get(x));
 		}
 		System.out.println(smallCC.size());
