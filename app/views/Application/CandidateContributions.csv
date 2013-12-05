@@ -1,4 +1,4 @@
 Election Cycle,Date,Amount,Donor Name,DonorCity,DonorState,DonorOccupation,DonorOrganization,DonorEntityType,Recipient Name,Party,Office,State,District,Status,Record Number FEC
-#{list items:cc, as:'contr'}
-${contr.ElectionCycle},${contr.TransactionDate},${contr.TransactionAmount},${contr.DonorNameNormalized},${contr.DonorCity},${contr.DonorState},${contr.DonorOccupation},${contr.DonorOrganization},${contr.DonorEntityType},${contr.RecipientCandidateNameNormalized},${contr.RecipientCandidateParty},${contr.RecipientCandidateOffice},${contr.RecipientCandidateOfficeState},${contr.RecipientCandidateDistrict},${contr.RecipientCandidateStatus},${contr.RecordNumberFEC}
-#{/list}
+#{list items:cc, as:'contr'},,,,,,,,,,,,,,
+${contr.ElectionCycle},${contr.TransactionDate},${contr.TransactionAmount},${contr.DonorNameNormalized},${contr.DonorCity},${contr.DonorState},${contr.DonorOccupation},${contr.DonorOrganization},${contr.DonorEntityType},${contr.RecipientCandidateNameNormalized},${contr.RecipientCandidateParty},${contr.RecipientCandidateOffice},${contr.RecipientCandidateOfficeState},${contr.RecipientCandidateDistrict},${contr.RecipientCandidateStatus},${String.valueOf(contr.RecordNumberFEC)}
+#{/list},,,,,,,,,,,,,,,

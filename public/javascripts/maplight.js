@@ -70,7 +70,7 @@ $(function() {
 	$("#filter-recipient-single-data")
 			.tooltip(
 					{
-						content : "To search for multiple candidates, separate their names with a comma.  <i>e.x. John Boehner, Al Franken</i>",
+						content : "To search for multiple candidates, separate their names with a comma.  <i>e.x. John Boehner, Paul Ryan</i>",
 						position : {
 							my : "left+15 center",
 							at : "right center"
@@ -197,8 +197,8 @@ $(function() {
 																bPaginate : true,
 																oLanguage : {
 																	sSearch : "Filter: ",
-																	sInfo : "Showing _START_ to _END_ of _TOTAL_ entries <br/> <i>*The maximum number of entries displayed on this page is 100.  To view the entire set of entries satisfying your query, download the CSV. Please cite as MapLight analysis of campaign finance data based on latest contributions from California Secretary of State as of</i> "
-																			+ currentDate
+																	sInfo : "Showing _START_ to _END_ of _TOTAL_ entries <br/> <i>*The maximum number of entries displayed on this page is 100.  To view the entire set of entries satisfying your query, download the CSV. Please cite as: 'MapLight analysis of campaign finance data based on latest contributions from the FEC as of</i> "
+																			+ currentDate + "'"
 																}
 															});
 										}).fail(function() {
