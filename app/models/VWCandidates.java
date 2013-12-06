@@ -43,7 +43,7 @@ public class VWCandidates extends GenericModel {
 //	public List<FECCandidates> fecCandidate;
 	
 	public static List<String> getSessionDropDown(){
-		return find("SELECT DISTINCT description FROM VWCandidates WHERE description is not null ORDER BY description ASC").fetch();
+		return find("SELECT DISTINCT description FROM VWCandidates WHERE description LIKE '%Congress%' AND election_year > 0 AND election_year < 2014 ORDER BY election_year DESC").fetch();
 		
 	}
 	
